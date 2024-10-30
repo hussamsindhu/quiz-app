@@ -12,8 +12,15 @@ const NavBar = () => {
 
   return (
     <div className=" flex items-center justify-between p-4">
-      <div>QUIZ DEMO</div>
-      <div className="flex gap-5 border rounded-full border-black px-4 py-1">
+      <div
+        className="text-2xl text-yellow-600 cursor-pointer"
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        QUIZ DEMO
+      </div>
+      <div className="flex gap-5 border rounded-full border-yellow-600 px-4 py-1">
         <div
           className="cursor-pointer"
           onClick={() => {

@@ -2,8 +2,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+type User = {
+  id: number;
+  username: string;
+  externalUserId: string;
+  email: string;
+  imageUrl?: string;
+  privateProfile?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export default function Home() {
-  const [user, setUser] = useState<any[]>([]);
+  const [user, setUser] = useState<User[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,6 +1,8 @@
 import { getAllUsers } from "@/actions/getUsers";
 import Image from "next/image";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const user = await getAllUsers();
   console.log(user);
@@ -32,8 +34,8 @@ export default async function Home() {
                     className="w-12 h-12 rounded-full object-cover"
                     src={usr.imageUrl || "https://via.placeholder.com/150"}
                     alt="User Image"
-                    width={5}
-                    height={5}
+                    width={48}
+                    height={48}
                   />
                 </td>
                 <td className="px-6 py-4 border-b text-gray-700">

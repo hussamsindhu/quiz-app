@@ -100,5 +100,4 @@ export async function POST(req: Request) {
   }
 }
 
-//https://quiz-app-demo.vercel.app/api/webhooks/clerk
 //https://apt-freely-bear.ngrok-free.app/api/webhooks/clerk

@@ -6,6 +6,8 @@ import { db } from "@/db";
 
 export async function POST(req: Request) {
   try {
+    console.log("yey chala");
+
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
     if (!WEBHOOK_SECRET) {
@@ -54,7 +56,9 @@ export async function POST(req: Request) {
     console.log("Webhook body:", body);
 
     if (eventType === "user.created") {
-      const user = await db.user.create({
+      console.log("idr a gya hoon");
+
+      await db.user.create({
         data: {
           username: payload.data.first_name || "",
           externalUserId: payload.data.id || "",
@@ -95,3 +99,6 @@ export async function POST(req: Request) {
     return new Response("An unexpected error occurred", { status: 500 });
   }
 }
+
+//https://quiz-app-demo.vercel.app/api/webhooks/clerk
+//https://apt-freely-bear.ngrok-free.app/api/webhooks/clerk

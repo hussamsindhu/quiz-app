@@ -1,6 +1,4 @@
 "use client";
-
-import { getAllUsers } from "@/actions/getUsers";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 

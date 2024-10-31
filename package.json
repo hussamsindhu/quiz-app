@@ -11,19 +11,16 @@
   "dependencies": {
     "@clerk/nextjs": "^6.0.2",
     "@clerk/themes": "^2.1.39",
-    "@neondatabase/serverless": "^0.9.5",
-    "@prisma/adapter-neon": "^5.21.1",
     "@prisma/client": "^5.21.1",
     "next": "15.0.1",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
-    "ws": "^8.18.0"
+    "svix": "^1.37.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/ws": "^8.5.12",
     "eslint": "^8",
     "eslint-config-next": "15.0.1",
     "postcss": "^8",

@@ -1,11 +1,25 @@
+"use client";
+
 import { getAllUsers } from "@/actions/getUsers";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export const revalidate = 0;
+export default function Home() {
+  const [user, setUser] = useState<any[]>([]);
 
-export default async function Home() {
-  const user = await getAllUsers();
-  console.log(user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/get-users");
+        const data = await res.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-[calc(100vh-80px)] gap-5">

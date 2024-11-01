@@ -15,7 +15,9 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/get-users");
+        const res = await fetch(
+          "https://quiz-app-peach-gamma-64.vercel.app/api/get-users"
+        );
         console.log({ res });
         const data = await res.json();
         console.log({ data });

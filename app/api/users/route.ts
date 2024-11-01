@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
-import { db } from "@/db";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function GET() {
   try {
     console.log("this is running");
-    const user = await db.user.findMany({
+    const user = await prisma.user.findMany({
       select: {
         username: true,
         email: true,

@@ -35,7 +35,6 @@ export async function POST(req: Request) {
 
     let evt: WebhookEvent;
 
-    // Verify the payload with the headers
     try {
       evt = wh.verify(body, {
         "svix-id": svix_id,
@@ -62,7 +61,6 @@ export async function POST(req: Request) {
         data: {
           username: payload.data.first_name || "",
           externalUserId: payload.data.id || "",
-          imageUrl: payload.data.image_url || "",
           email: payload.data.email_addresses[0].email_address || "",
         },
       });
@@ -76,20 +74,28 @@ export async function POST(req: Request) {
         },
         data: {
           username: payload.data.first_name || "",
-          imageUrl: payload.data.image_url || "",
           email: payload.data.email_addresses[0].email_address || "",
         },
       });
     }
 
-    // delete user
     if (eventType === "user.deleted") {
-      console.log("here delete the call");
-      await db.user.delete({
+      const userExists = await db.user.findUnique({
         where: {
           externalUserId: payload.data.id,
         },
       });
+
+      if (userExists) {
+        await db.user.delete({
+          where: {
+            externalUserId: payload.data.id,
+          },
+        });
+        console.log(`User with ID ${payload.data.id} deleted successfully.`);
+      } else {
+        console.log(`User with ID ${payload.data.id} not found.`);
+      }
       return NextResponse.redirect(new URL("/", req.url));
     }
 
@@ -99,5 +105,3 @@ export async function POST(req: Request) {
     return new Response("An unexpected error occurred", { status: 500 });
   }
 }
-
-//https://apt-freely-bear.ngrok-free.app/api/webhooks/clerk

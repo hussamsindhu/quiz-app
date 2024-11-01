@@ -1,34 +1,23 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type User = {
   username: string;
   externalUserId: string;
   email: string;
-  imageUrl?: string;
 };
 
 export default function Home() {
   const [user, setUser] = useState<User[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://quiz-app-peach-gamma-64.vercel.app/api/get-users"
-        );
-        console.log({ res });
-        const data = await res.json();
-        console.log({ data });
-
-        setUser(data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    fetchData();
+    (async () => {
+      const res = await fetch(
+        "https://quiz-app-peach-gamma-64.vercel.app/api/users"
+      );
+      const data = await res.json();
+      setUser(data ?? []);
+    })();
   }, []);
 
   return (
@@ -40,9 +29,6 @@ export default function Home() {
           <thead>
             <tr>
               <th className="px-6 py-4 border-b bg-gray-100 text-left text-gray-600 font-medium">
-                Image
-              </th>
-              <th className="px-6 py-4 border-b bg-gray-100 text-left text-gray-600 font-medium">
                 Name
               </th>
               <th className="px-6 py-4 border-b bg-gray-100 text-left text-gray-600 font-medium">
@@ -53,15 +39,6 @@ export default function Home() {
           <tbody>
             {user?.map((usr, index) => (
               <tr key={index}>
-                <td className="px-6 py-4 border-b">
-                  <Image
-                    className="w-12 h-12 rounded-full object-cover"
-                    src={usr.imageUrl || "https://via.placeholder.com/150"}
-                    alt="User Image"
-                    width={48}
-                    height={48}
-                  />
-                </td>
                 <td className="px-6 py-4 border-b text-gray-700">
                   {usr?.username || ""}
                 </td>

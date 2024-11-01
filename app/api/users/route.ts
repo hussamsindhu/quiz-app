@@ -8,7 +8,6 @@ export async function GET() {
       select: {
         username: true,
         email: true,
-        imageUrl: true,
         externalUserId: true,
       },
     });

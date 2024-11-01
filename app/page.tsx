@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 type User = {
-  id: number;
   username: string;
   externalUserId: string;
   email: string;
@@ -16,9 +15,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          "https://quiz-app-peach-gamma-64.vercel.app/api/get-users"
-        );
+        const res = await fetch("/api/get-users");
         console.log({ res });
         const data = await res.json();
         console.log({ data });

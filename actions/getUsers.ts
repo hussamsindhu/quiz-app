@@ -12,6 +12,8 @@ export const getAllUsers = async () => {
         externalUserId: true,
       },
     });
+    console.log("kya tum chal rae hooo", user);
+
     return user;
   } catch (err) {}
 };

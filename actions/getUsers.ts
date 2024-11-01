@@ -9,6 +9,7 @@ export const getAllUsers = async () => {
         username: true,
         email: true,
         imageUrl: true,
+        externalUserId: true,
       },
     });
     return user;

@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
-import { getAllUsers } from "@/actions/getUsers";
+import { db } from "@/db";
 
 export async function GET() {
   try {
     console.log("this is running");
-    const users = await getAllUsers();
+    const user = await db.user.findMany({
+      select: {
+        username: true,
+        email: true,
+        imageUrl: true,
+        externalUserId: true,
+      },
+    });
     console.log("this also runs");
-    console.log("users", users);
-    return NextResponse.json(users);
+    console.log("users", user);
+    return NextResponse.json(user);
   } catch (error) {
     console.error("Error fetching users:", error);
     return NextResponse.json(

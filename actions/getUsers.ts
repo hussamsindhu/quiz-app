@@ -4,9 +4,13 @@ import { db } from "@/db";
 
 export const getAllUsers = async () => {
   try {
-    const user = await db.user.findMany();
-    console.log(user);
-
+    const user = await db.user.findMany({
+      select: {
+        username: true,
+        email: true,
+        imageUrl: true,
+      },
+    });
     return user;
   } catch (err) {}
 };

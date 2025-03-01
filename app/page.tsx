@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const res = await fetch(
-        "https://quiz-app-peach-gamma-64.vercel.app/api/users"
+        "https://quiz-app-orcin-nu.vercel.app//api/users"
       );
       const data = await res.json();
       setUser(data ?? []);
